@@ -23,5 +23,5 @@ for (const error of errors) {
 }
 
 if(errors[0].severity <= maxSeverity) {
-  process.exit(1);
+  throw new Error("Code scan failed with errors");
 }
