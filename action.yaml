@@ -25,7 +25,6 @@ runs:
       shell: bash
       run: |
         sudo apt-get update
-        ls -la
         npm ci
         sudo apt-get install openjdk-11-jdk
         java -version
@@ -33,4 +32,4 @@ runs:
         sf --version
         sf plugins install @salesforce/sfdx-scanner
         sf scanner run --target . -f json -o codescan.json
-        node dist/raise-warnings.js
+        node scripts/js/raise-warnings.js
