@@ -4,7 +4,9 @@ import fs from 'fs'
 import { getMessagesWithSeverities } from './utils'
 const maxSeverity = parseInt(core.getInput('max-severity'));
 
-if(![0, 1, 2, 3, 4, 5].includes(maxSeverity)) {
+const validSeverities = [0, 1, 2, 3, 4, 5];
+
+if(!validSeverities.includes(maxSeverity)) {
   throw new Error("Invalid max-severity, must be a number between 0 and 5");
 }
 
