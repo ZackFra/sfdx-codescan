@@ -27,7 +27,6 @@ runs:
         sudo apt-get update
         ls -la
         npm ci
-        npm run build
         sudo apt-get install openjdk-11-jdk
         java -version
         npm i -g @salesforce/cli
