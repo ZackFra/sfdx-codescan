@@ -23,5 +23,5 @@ for (const error of errors) {
 }
 
 if(errors[0].severity <= maxSeverity) {
-  throw new Error("Code scan failed with errors");
+  throw new Error("Max severity exceeded");
 }
