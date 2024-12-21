@@ -1,7 +1,7 @@
 // `::warning file={name},line={line},endLine={endLine},title={title}::{message}`
 
 const fs = require("fs");
-const maxSeverity = parseInt(process.argv[2]);
+const maxSeverity = core.getInput('max-severity');
 
 const codeScanFile = JSON.parse(fs.readFileSync("codescan.json", "utf8"));
 
