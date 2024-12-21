@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "tsc"
+    "build": "tsc --outDir dist"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
