@@ -4,6 +4,10 @@ import fs from 'fs'
 import { getMessagesWithSeverities } from './utils'
 const maxSeverity = parseInt(core.getInput('max-severity'));
 
+if(![0, 1, 2, 3, 4, 5].includes(maxSeverity)) {
+  throw new Error("Invalid max-severity, must be a number between 0 and 5");
+}
+
 const codeScanFile = JSON.parse(fs.readFileSync("codescan.json", "utf8"));
 const errors: MessageWithSeverity[] = [];
 
