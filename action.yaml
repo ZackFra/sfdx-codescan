@@ -32,4 +32,4 @@ runs:
         sf --version
         sf plugins install @salesforce/sfdx-scanner
         sf scanner run --target . -f json -o codescan.json
-        node scripts/js/raise-warnings.js
+        node ${{ github.action_path }}/scripts/js/raise-warnings.js
