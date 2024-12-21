@@ -1,4 +1,4 @@
-name: CodeScan Pull Request
+name: SFDX CodeScan
 
 on:
   workflow_call:
@@ -10,7 +10,7 @@ on:
         type: string
 
 jobs:
-  code-scan-pull-request:
+  run-code-scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
