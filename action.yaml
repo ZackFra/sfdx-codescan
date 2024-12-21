@@ -1,13 +1,14 @@
 name: SFDX CodeScan
+description: Run a Salesforce CodeScan and raise warnings based on severity
+author: Zackary Frazier
 
-on:
-  workflow_call:
-    inputs:
-      max-severity:
-        description: 'Maximum severity to fail the build [0-5]'
-        required: false
-        default: 5
-        type: number
+
+inputs:
+  max-severity:
+    description: 'Maximum severity to fail the build [0-5]'
+    required: false
+    default: 5
+    type: number
 
 jobs:
   run-code-scan:
@@ -38,4 +39,4 @@ jobs:
             sf scanner run --target . -f json -o codescan.json
       - name: Raise Warnings
         run: |
-            node scripts/js/raise-warnings.js ${{ github.event.inputs.max-severity }}
+            node scripts/js/raise-warnings.js ${{ inputs.max-severity }}
