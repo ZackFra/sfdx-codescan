@@ -2,6 +2,12 @@ name: CodeScan Pull Request
 
 on:
   workflow_call:
+    inputs:
+      max-severity:
+        description: 'Maximum severity to fail the build'
+        required: true
+        default: 5
+        type: string
 
 jobs:
   code-scan-pull-request:
