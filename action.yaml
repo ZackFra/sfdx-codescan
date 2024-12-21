@@ -38,4 +38,4 @@ jobs:
             sf scanner run --target . -f json -o codescan.json
       - name: Raise Warnings
         run: |
-            node scripts/js/raise-warnings.js ${{ inputs.max-severity }}
+            node scripts/js/raise-warnings.js ${{ github.event.inputs.max-severity }}
