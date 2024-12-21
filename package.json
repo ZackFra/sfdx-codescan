@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "tsc --outDir dist"
+    "build": "tsc --outDir scripts/js"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
