@@ -1,5 +1,5 @@
 // `::warning file={name},line={line},endLine={endLine},title={title}::{message}`
-
+const core = require('@actions/core');
 const fs = require("fs");
 const maxSeverity = core.getInput('max-severity');
 
