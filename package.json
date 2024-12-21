@@ -4,7 +4,6 @@
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@salesforce/cli": "^2.70.7",
     "@types/node": "^22.10.2",
     "typescript": "^5.7.2"
   }
