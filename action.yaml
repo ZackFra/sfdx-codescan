@@ -25,7 +25,7 @@ runs:
       shell: bash
       run: |
         sudo apt-get update
-        npm i
+        npm ci
         npm run build
         sudo apt-get install openjdk-11-jdk
         java -version
