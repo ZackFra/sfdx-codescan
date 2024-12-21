@@ -7,7 +7,7 @@ on:
         description: 'Maximum severity to fail the build [0-5]'
         required: false
         default: 5
-        type: string
+        type: number
 
 jobs:
   run-code-scan:
