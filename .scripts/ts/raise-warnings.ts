@@ -1,5 +1,5 @@
 // `::warning file={name},line={line},endLine={endLine},title={title}::{message}`
-import core from '@actions/core'
+import * as core from '@actions/core'
 import fs from 'fs'
 import { getMessagesWithSeverities } from './utils'
 const maxSeverity = parseInt(core.getInput('max-severity'));
