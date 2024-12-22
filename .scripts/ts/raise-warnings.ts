@@ -1,11 +1,8 @@
 // `::warning file={name},line={line},endLine={endLine},title={title}::{message}`
-import * as core from '@actions/core'
 import fs from 'fs'
 import { getMessagesWithSeverities } from './utils'
 
 const maxSeverity = Number(process.argv[2]);
-
-console.log(`Max severity: ${core.getInput('max-severity')}, ${maxSeverity}`);
 
 const validSeverities = [0, 1, 2, 3, 4, 5];
 
