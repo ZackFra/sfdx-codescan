@@ -1,0 +1,3 @@
+interface SfdxProjectDef {
+    packageDirectories: PackageDirectory[]
+}

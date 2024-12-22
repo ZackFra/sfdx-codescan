@@ -1,0 +1,3 @@
+interface PackageDirectory {
+    path: string
+}
