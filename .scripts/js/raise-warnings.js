@@ -41,6 +41,7 @@ const core = __importStar(require("@actions/core"));
 const fs_1 = __importDefault(require("fs"));
 const utils_1 = require("./utils");
 const maxSeverity = parseInt(core.getInput('max-severity'));
+console.log(`Max severity: ${maxSeverity}`);
 const validSeverities = [0, 1, 2, 3, 4, 5];
 if (!validSeverities.includes(maxSeverity)) {
     throw new Error("Invalid max-severity, must be a number between 0 and 5");
