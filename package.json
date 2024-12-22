@@ -3,6 +3,7 @@
     "build": "tsc --outDir .scripts/js"
   },
   "dependencies": {
+    "@actions/core": "^1.11.1",
     "@types/node": "^22.10.2",
     "typescript": "^5.7.2"
   }

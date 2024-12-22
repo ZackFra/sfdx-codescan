@@ -1,5 +1,6 @@
 // `::warning file={name},line={line},endLine={endLine},title={title}::{message}`
 import fs from 'fs'
+import * as core from '@actions/core'
 import { getMessagesWithSeverities } from './utils'
 
 const maxSeverity = Number(process.argv[2]);
@@ -25,6 +26,6 @@ for (const error of errors) {
 }
 
 if(errors.length && errors[0].severity <= maxSeverity) {
-  console.error(`Maximum allowed severity level (${maxSeverity}) exceeded by PMD violation(s).`);
-  throw new Error("See logs for details.");
+  core.error(`Maximum allowed severity level (${maxSeverity}) exceeded by PMD violation(s). See logs for details.`)
+  process.exitCode = core.ExitCode.Failure
 }
