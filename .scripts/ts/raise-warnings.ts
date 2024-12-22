@@ -4,7 +4,7 @@ import fs from 'fs'
 import { getMessagesWithSeverities } from './utils'
 const maxSeverity = parseInt(core.getInput('max-severity'));
 
-console.log(`Max severity: ${maxSeverity}`);
+console.log(`Max severity: ${core.getInput('max-severity')}`);
 
 const validSeverities = [0, 1, 2, 3, 4, 5];
 
