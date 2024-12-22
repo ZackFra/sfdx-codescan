@@ -26,6 +26,6 @@ for (const error of errors) {
   console.log(error.message);
 }
 
-if(errors[0].severity <= maxSeverity) {
+if(errors.length && errors[0].severity <= maxSeverity) {
   throw new Error("Max severity exceeded, see logs for details");
 }
