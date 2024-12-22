@@ -22,7 +22,7 @@ runs:
       with:
         node-version: '20'
     - name: Move Directories
-      uses: node20
+      using: node20
       main: .scripts/js/move-directories.js
     - name: Code Scan, Raise warnings
       shell: bash
