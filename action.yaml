@@ -28,8 +28,8 @@ runs:
       shell: bash
       run: |
         sudo apt-get update
-        mv ${{ github.workspace }} ${{ github.action_path }}
         cd ${{ github.action_path }}
+        npm ci
         sudo apt-get install openjdk-11-jdk
         java -version
         npm i -g @salesforce/cli
