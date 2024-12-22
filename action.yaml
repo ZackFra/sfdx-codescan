@@ -21,6 +21,9 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
+    - name: Move Directories
+      uses: node20
+      main: .scripts/js/move-directories.js
     - name: Code Scan, Raise warnings
       shell: bash
       run: |
