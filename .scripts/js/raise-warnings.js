@@ -22,5 +22,6 @@ for (const error of errors) {
     console.log(error.message);
 }
 if (errors.length && errors[0].severity <= maxSeverity) {
-    throw new Error(`Maximum severity level (${maxSeverity}) exceeded by PMD violation(s). See logs for details.`);
+    console.error(`Maximum allowed severity level (${maxSeverity}) exceeded by PMD violation(s).`);
+    throw new Error("See logs for details.");
 }
