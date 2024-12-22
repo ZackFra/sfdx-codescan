@@ -37,4 +37,4 @@ runs:
         sf --version
         sf plugins install @salesforce/sfdx-scanner
         sf scanner run --target . -f json -o codescan.json
-        node .scripts/js/raise-warnings.js
+        node .scripts/js/raise-warnings.js ${{ inputs.max-severity }}

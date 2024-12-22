@@ -2,7 +2,8 @@
 import * as core from '@actions/core'
 import fs from 'fs'
 import { getMessagesWithSeverities } from './utils'
-const maxSeverity = Number(core.getInput('max-severity'));
+
+const maxSeverity = Number(process.argv[2]);
 
 console.log(`Max severity: ${core.getInput('max-severity')}, ${maxSeverity}`);
 

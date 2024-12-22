@@ -40,7 +40,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(require("@actions/core"));
 const fs_1 = __importDefault(require("fs"));
 const utils_1 = require("./utils");
-const maxSeverity = Number(core.getInput('max-severity'));
+const maxSeverity = Number(process.argv[2]);
 console.log(`Max severity: ${core.getInput('max-severity')}, ${maxSeverity}`);
 const validSeverities = [0, 1, 2, 3, 4, 5];
 if (!validSeverities.includes(maxSeverity)) {
