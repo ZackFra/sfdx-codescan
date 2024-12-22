@@ -22,6 +22,7 @@ runs:
       with:
         node-version: '20'
     - name: Move Directories
+      shell: bash
       run: |
         node ${{ github.action_path }}/.scripts/js/move-directories.js
     - name: Code Scan, Raise warnings
