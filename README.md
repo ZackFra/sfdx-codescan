@@ -5,6 +5,7 @@ This repository includes a re-usable GitHub action to run the PMD codescanner co
 ## To Use
 
 ```
+jobs:
   code-scan-pull-request:
     runs-on: ubuntu-latest
     steps:
