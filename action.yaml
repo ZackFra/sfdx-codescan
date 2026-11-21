@@ -14,13 +14,18 @@ runs:
   using: composite
   steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
     - name: Setup Node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
-        node-version: '20'
+        node-version: '26'
+    - name: Setup Java
+      uses: actions/setup-java@v6
+      with:
+        distribution: temurin
+        java-version: '21'
     - name: Move Directories
       shell: bash
       run: |
@@ -28,13 +33,11 @@ runs:
     - name: Code Scan, Raise warnings
       shell: bash
       run: |
-        sudo apt-get update
         cd ${{ github.action_path }}
         npm ci
-        sudo apt-get install openjdk-11-jdk
-        java -version
         npm i -g @salesforce/cli
         sf --version
-        sf plugins install @salesforce/sfdx-scanner
-        sf scanner run --target . -f json -o codescan.json
+        java -version
+        sf plugins install @salesforce/plugin-code-analyzer
+        sf code-analyzer run --workspace . --output-file codescan.json --rule-selector pmd --rule-selector eslint --rule-selector retire-js --rule-selector cpd --rule-selector regex
         node .scripts/js/raise-warnings.js ${{ inputs.max-severity }}

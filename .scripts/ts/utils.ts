@@ -1,19 +1,29 @@
-export function getMessagesWithSeverities(warning: PmdWarning, maxSeverity: number): MessageWithSeverity[] {
-    const messagesWithSeverities: MessageWithSeverity[] = [];
-    for (const violation of warning.violations) {
-      messagesWithSeverities.push(getMessageWithSeverity(warning, violation, maxSeverity));
+export function getMessagesWithSeverities(violations: CodeAnalyzerViolation[], maxSeverity: number): MessageWithSeverity[] {
+    const messagesWithSeverities: MessageWithSeverity[] = []
+    for (const violation of violations) {
+        const messageWithSeverity = getMessageWithSeverity(violation, maxSeverity)
+        if (messageWithSeverity) {
+            messagesWithSeverities.push(messageWithSeverity)
+        }
     }
-    return messagesWithSeverities;
+    return messagesWithSeverities
 }
 
-function getMessageWithSeverity(warning: PmdWarning, violation: PmdViolation, maxSeverity: number): MessageWithSeverity {
-    let message: string;
-    if(violation.severity <= maxSeverity) {
-      message = `::error file=${warning.fileName},line=${violation.line},endLine=${violation.endLine},title=${violation.ruleName}::${violation.category.toUpperCase()} ERROR, SEVERITY (${violation.severity}) ${violation.message} in ${warning.fileName} at line ${violation.line} - ${violation.ruleName} - ${violation.url}`;
-    } else {
-      message = `::warning file=${warning.fileName},line=${violation.line},endLine=${violation.endLine},title=${violation.ruleName}::${violation.category.toUpperCase()} WARNING, SEVERITY (${violation.severity}) ${violation.message} in ${warning.fileName} at line ${violation.line} - ${violation.ruleName} - ${violation.url}`;
+function getMessageWithSeverity(violation: CodeAnalyzerViolation, maxSeverity: number): MessageWithSeverity | undefined {
+    const location = violation.locations[violation.primaryLocationIndex] ?? violation.locations[0]
+    if (!location?.file || location.startLine == null) {
+        return undefined
     }
-    message = message.replaceAll("\r", "").replaceAll("\n", "");
-    const messageWithSeverity : MessageWithSeverity = { severity: violation.severity, message };
-    return messageWithSeverity;
+
+    const endLine = location.endLine ?? location.startLine
+    const category = (violation.tags?.find(tag => tag !== 'Recommended') ?? violation.engine).toUpperCase()
+    const url = violation.resources?.[0] ?? ''
+    const failed = violation.severity <= maxSeverity
+    const level = failed ? 'error' : 'warning'
+    const label = failed ? 'ERROR' : 'WARNING'
+    const message = `::${level} file=${location.file},line=${location.startLine},endLine=${endLine},title=${violation.rule}::${category} ${label}, SEVERITY (${violation.severity}) ${violation.message} in ${location.file} at line ${location.startLine} - ${violation.rule} - ${url}`
+        .replaceAll('\r', '')
+        .replaceAll('\n', '')
+
+    return { severity: violation.severity, message }
 }
